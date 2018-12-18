@@ -1,7 +1,9 @@
 #!/bin/bash
 
-echo Get version of latest glibc...
-VERSION=$(dnf --disablerepo=* --enablerepo=fedora,updates list --available glibc.x86_64 | grep fc29 | awk '{print $2}')
+if [ -z "$VERSION" ]; then
+  echo Get version of latest glibc...
+  VERSION=$(dnf --disablerepo=* --enablerepo=fedora,updates list --available glibc.x86_64 | grep fc29 | awk '{print $2}')
+fi
 
 echo Make some folders...
 rm -rf rpmbuild
